@@ -1,7 +1,6 @@
 # illhab 
 
-- illhab project for backend server 
-- 
+> illhab project for backend server
 
 ## 시작하기
 
