@@ -1,4 +1,4 @@
-# illhab 
+# illhab
 
 > illhab project for backend server
 
@@ -8,25 +8,25 @@
 
 ### 환경
 
-- Java 17 
+- Java 17
 - spring boot 3.1.2
 - gradle 8.2.1
 
 ### 설치 및 실행
 
-1. 저장소 클론 
+1. 저장소 클론
 
 ```bash
 git clone https://github.com/illhab/ilhab_backend.git
 ```
 
-2. intellij java version 17로 설정 
+2. intellij java version 17로 설정
 
-3. gradle refresh  
+3. gradle refresh
 
-
-## 추천 옵션 및 설정 
+## 추천 옵션 및 설정
 
 - [build, run 옵션 변경](https://jojoldu.tistory.com/450)
 - [intellij Google Code Style 적용](https://tychejin.tistory.com/334)
 - [intellij Gitmoji](https://treasurebear.tistory.com/70)
+- [intellij Auto Formatting Plugin](https://devroach.tistory.com/73)
