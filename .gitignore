@@ -42,3 +42,4 @@ out/
 
 # IntelliJ IDEA project specific files
 *.log
+*.xml
