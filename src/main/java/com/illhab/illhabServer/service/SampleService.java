@@ -1,6 +1,6 @@
 package com.illhab.illhabServer.service;
 
-import com.illhab.illhabServer.entity.Sample;
+import com.illhab.illhabServer.model.Sample;
 import java.sql.Timestamp;
 import java.util.Random;
 import org.apache.commons.lang3.exception.ExceptionUtils;

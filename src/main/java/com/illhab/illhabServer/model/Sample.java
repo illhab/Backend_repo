@@ -1,4 +1,4 @@
-package com.illhab.illhabServer.entity;
+package com.illhab.illhabServer.model;
 
 import java.sql.Timestamp;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.illhab.illhabServer.controller;
 
-import com.illhab.illhabServer.entity.Sample;
+import com.illhab.illhabServer.model.Sample;
 import com.illhab.illhabServer.service.SampleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
