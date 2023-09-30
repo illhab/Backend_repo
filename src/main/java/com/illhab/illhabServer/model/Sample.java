@@ -1,18 +1,20 @@
 package com.illhab.illhabServer.model;
 
-import java.sql.Timestamp;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@ToString
+@Data
+@Table(name = "sample")
+@Entity
+@NoArgsConstructor
 public class Sample {
-
-    private String sample_String;
-    private Integer sample_Integer;
-    private Double sample_Double;
-    private Timestamp sample_Timestamp;
-
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "SAMPLE_ID")
+    private Long id;
 }
