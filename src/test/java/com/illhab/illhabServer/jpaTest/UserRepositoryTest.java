@@ -27,7 +27,7 @@ public class UserRepositoryTest {
             User.builder()
                 .email("test@test.com")
                 .name("TEST")
-                .sns_role(SNS_ROLE.GOOGLE)
+                .sns_role("kakao")
                 .build());
 
         //when
@@ -47,7 +47,7 @@ public class UserRepositoryTest {
             User.builder()
                 .email("test@test.com")
                 .name("TEST")
-                .sns_role(SNS_ROLE.GOOGLE)
+                .sns_role("kakao")
                 .build());
 
         //when
@@ -58,6 +58,46 @@ public class UserRepositoryTest {
             userRepository.findById(insertUser.getId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다."));
         });
+    }
+
+    @Test
+    @Transactional
+    @DisplayName("유저 조회 성공")
+    public void 유저_조회_성공() {
+        //given
+        User insertUser = userRepository.save(
+                User.builder()
+                        .email("test@test.com")
+                        .name("TEST")
+                        .sns_role("kakao")
+                        .build());
+
+        //when
+        User selectUser = userRepository.findByEmail("test@test.com");
+
+        //then
+        assertThat(selectUser).isNotNull();
+
+    }
+
+    @Test
+    @Transactional
+    @DisplayName("유저 조회 실패")
+    public void 유저_조회_실패() {
+        //given
+        User insertUser = userRepository.save(
+                User.builder()
+                        .email("test@test.com")
+                        .name("TEST")
+                        .sns_role("kakao")
+                        .build());
+
+        //when
+        User selectUser = userRepository.findByEmail("test111@test.com");
+
+        //then
+        assertThat(selectUser).isNotNull();
+
     }
 
 }

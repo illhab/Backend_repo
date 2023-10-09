@@ -16,6 +16,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "tb_user")
@@ -33,7 +34,7 @@ public class User extends TimeEntity {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 15)
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -41,10 +42,25 @@ public class User extends TimeEntity {
     private SNS_ROLE sns_role;
 
     @Builder
-    public User(String email, String name, SNS_ROLE sns_role) {
+    public User(String email, String name, String sns_role) {
         this.email = email;
         this.name = name;
-        this.sns_role = sns_role;
+
+        //sns_role은 string으로 받고 여기서 변환
+        switch (sns_role){
+            case "google":
+                this.sns_role = SNS_ROLE.GOOGLE;
+                break;
+            case "kakao":
+                this.sns_role = SNS_ROLE.KAKAO;
+                break;
+            case "github":
+                this.sns_role = SNS_ROLE.GITHUB;
+                break;
+            default:
+                this.sns_role = SNS_ROLE.NONE;
+                break;
+        }
     }
 }
 
