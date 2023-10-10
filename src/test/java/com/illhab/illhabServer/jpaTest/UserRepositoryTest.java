@@ -3,7 +3,6 @@ package com.illhab.illhabServer.jpaTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.illhab.illhabServer.entity.SNS_ROLE;
 import com.illhab.illhabServer.entity.User;
 import com.illhab.illhabServer.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -66,17 +65,17 @@ public class UserRepositoryTest {
     public void 유저_조회_성공() {
         //given
         User insertUser = userRepository.save(
-                User.builder()
-                        .email("test@test.com")
-                        .name("TEST")
-                        .sns_role("kakao")
-                        .build());
+            User.builder()
+                .email("test@test.com")
+                .name("TEST")
+                .sns_role("kakao")
+                .build());
 
         //when
-        User selectUser = userRepository.findByEmail("test@test.com");
+        boolean isExistsUser = userRepository.existsByEmail("test@test.com");
 
         //then
-        assertThat(selectUser).isNotNull();
+        assertThat(isExistsUser).isTrue();
 
     }
 
@@ -86,18 +85,17 @@ public class UserRepositoryTest {
     public void 유저_조회_실패() {
         //given
         User insertUser = userRepository.save(
-                User.builder()
-                        .email("test@test.com")
-                        .name("TEST")
-                        .sns_role("kakao")
-                        .build());
+            User.builder()
+                .email("test@test.com")
+                .name("TEST")
+                .sns_role("kakao")
+                .build());
 
         //when
-        User selectUser = userRepository.findByEmail("test111@test.com");
+        boolean isExistsUser = userRepository.existsByEmail("test111@test.com");
 
         //then
-        assertThat(selectUser).isNotNull();
+        assertThat(isExistsUser).isFalse();
 
     }
-
 }

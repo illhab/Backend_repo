@@ -1,7 +1,8 @@
 package com.illhab.illhabServer.service;
 
-import com.illhab.illhabServer.entity.SNS_ROLE;
+import com.illhab.illhabServer.dto.UserDto;
 
 public interface UserService {
-    String join(String name, String email, String sns_role);
+    
+    UserDto.Response join(UserDto.Request userDto);
 }
