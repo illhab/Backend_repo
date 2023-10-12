@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.illhab.illhabServer.entity.User;
 import com.illhab.illhabServer.repository.UserRepository;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,34 @@ public class UserRepositoryTest {
 
         //then
         assertThat(isExistsUser).isFalse();
+
+    }
+
+    @Test
+    @Transactional
+    @DisplayName("전체 유저를 조회 성공 테스트 케이스")
+    public void 유저_목록_조회_성공() {
+        //given
+        User user1 = User.builder()
+            .email("test@test.com")
+            .name("TEST")
+            .sns_role("kakao")
+            .build();
+
+        User user2 = User.builder()
+            .email("test2@test.com")
+            .name("TEST")
+            .sns_role("kakao")
+            .build();
+
+        userRepository.save(user1);
+        userRepository.save(user2);
+
+        //when
+        List<User> users = userRepository.findAll();
+
+        //then
+        assertThat(users.size()).isEqualTo(2);
 
     }
 }
