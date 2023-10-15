@@ -9,9 +9,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "tb_group")
 @Entity
 public class Group extends TimeEntity {
@@ -25,4 +29,8 @@ public class Group extends TimeEntity {
 
     private String name;
 
+    @Builder
+    public Group(String name) {
+        this.name = name;
+    }
 }
