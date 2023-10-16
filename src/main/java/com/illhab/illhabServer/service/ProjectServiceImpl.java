@@ -8,7 +8,6 @@ import com.illhab.illhabServer.entity.UserProject;
 import com.illhab.illhabServer.repository.ProjectRepository;
 import com.illhab.illhabServer.repository.UserProjectRepository;
 import com.illhab.illhabServer.repository.UserRepository;
-import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +33,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public UserProjectDto.JoinResponse join(Long projectId, Long userId) {
         Project project = projectRepository.findById(projectId)
-            .orElseThrow(() -> new NoSuchElementException("해당 프로젝트가 존재하지 않습니다."));
+            .orElseThrow(() -> new IllegalArgumentException("해당 프로젝트가 존재하지 않습니다."));
 
         User user = userRepository.findById(userId)
-            .orElseThrow(() -> new NoSuchElementException("해당 유저가 존재하지 않습니다."));
+            .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다."));
 
         UserProject userProject = UserProject.builder()
             .user(user)
