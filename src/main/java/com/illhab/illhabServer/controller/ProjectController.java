@@ -22,7 +22,7 @@ public class ProjectController {
         return ResponseEntity.ok().body(projectService.create(projectDto));
     }
 
-    @PostMapping("/project/{projectId}/{userId}")
+    @PostMapping("/projects/{projectId}/{userId}")
     public ResponseEntity<UserProjectDto.JoinResponse> join(@PathVariable Long projectId,
         @PathVariable Long userId) {
         return ResponseEntity.ok().body(projectService.join(projectId, userId));
