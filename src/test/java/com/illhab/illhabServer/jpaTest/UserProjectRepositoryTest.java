@@ -67,4 +67,45 @@ public class UserProjectRepositoryTest {
         //then
         assertThat(saveUserProeject).isEqualTo(insertUserProject);
     }
+
+    @Test
+    @Transactional
+    @DisplayName("프로젝트로 유저 추방 테스트 케이스")
+    public void 프로젝트_추방() {
+        //given
+        User insertUser = userRepository.save(
+            User.builder()
+                .email("test@test.com")
+                .name("TEST")
+                .sns_role("kakao")
+                .build());
+
+        Group insertGroup = groupRepository.save(
+            Group.builder()
+                .name("testGroup")
+                .build());
+
+        Project insertProject = projectRepository.save(Project.builder()
+            .group(insertGroup)
+            .leader(1L)
+            .name("testProject")
+            .build());
+
+        UserProject insertUserProject = userProjectRepository.save(UserProject.builder()
+            .user(insertUser)
+            .project(insertProject)
+            .build());
+
+        UserProject saveUserProject = userProjectRepository.findById(insertUserProject.getId())
+            .orElseThrow(() -> new IllegalArgumentException("해당 유저프로젝트가 존재하지 않습니다."));
+
+        //when
+        saveUserProject.ban();
+
+        UserProject bannedUserProject = userProjectRepository.findById(insertUserProject.getId())
+            .orElseThrow(() -> new IllegalArgumentException("해당 유저프로젝트가 존재하지 않습니다."));
+
+        //then
+        assertThat(bannedUserProject.getIsBanned()).isEqualTo(1);
+    }
 }
