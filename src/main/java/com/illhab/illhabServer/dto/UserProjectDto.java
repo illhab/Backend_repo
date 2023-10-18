@@ -6,15 +6,16 @@ import lombok.Getter;
 public class UserProjectDto {
 
     @Getter
-    public static class JoinResponse {
+    public static class Response {
 
         Long projectId;
         Long userId;
 
-        public JoinResponse(UserProject userProject) {
+        public Response(UserProject userProject) {
             this.projectId = userProject.getProject().getId();
             this.userId = userProject.getUser().getId();
         }
     }
+
 
 }
