@@ -1,10 +1,13 @@
 package com.illhab.illhabServer.service;
 
+import static com.illhab.illhabServer.entity.ErrorCode.DUPLICATE_RESOURCE;
+
 import com.illhab.illhabServer.dto.ProjectDto;
 import com.illhab.illhabServer.dto.UserProjectDto;
 import com.illhab.illhabServer.entity.Project;
 import com.illhab.illhabServer.entity.User;
 import com.illhab.illhabServer.entity.UserProject;
+import com.illhab.illhabServer.exception.CustomException;
 import com.illhab.illhabServer.repository.ProjectRepository;
 import com.illhab.illhabServer.repository.UserProjectRepository;
 import com.illhab.illhabServer.repository.UserRepository;
@@ -49,6 +52,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         if (isExistsUserProject) {
             //Duplicated 커스텀 예외 추가 필요
+            throw new CustomException(DUPLICATE_RESOURCE);
         }
 
         return new UserProjectDto.Response(userProjectRepository.save(userProject));
