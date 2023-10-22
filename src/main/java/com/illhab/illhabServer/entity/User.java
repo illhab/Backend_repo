@@ -11,10 +11,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 
 @Getter
@@ -35,6 +33,7 @@ public class User extends TimeEntity {
     private String email;
 
     @Column(nullable = false, length = 15)
+    @Setter
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -61,6 +60,12 @@ public class User extends TimeEntity {
                 this.sns_role = SNS_ROLE.NONE;
                 break;
         }
+    }
+
+    public void changeName(String name){
+        //setter 지양을 위해 해당 메서드를 만들었습니다.
+        //이름을 바꾸는 용도로 사용하는 메서드입니다.
+        this.name = name;
     }
 }
 

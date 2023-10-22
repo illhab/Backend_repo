@@ -4,6 +4,8 @@ import com.illhab.illhabServer.entity.SNS_ROLE;
 import com.illhab.illhabServer.entity.User;
 import java.util.List;
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 public class UserDto {
 
@@ -38,5 +40,37 @@ public class UserDto {
         public ListResponse(List<User> users) {
             this.users = users;
         }
+
     }
+
+    @Getter
+    public static class UserResponse{
+        private User user;
+        public UserResponse(User user){this.user = user;}
+    }
+
+    @Getter
+    public static class UpdateRequest{
+        private String name;
+    }
+    @Getter
+    public static class UpdateResponse{
+        private String name;
+        private String email;
+
+        public UpdateResponse(User user){
+            this.name = user.getName();
+            this.email = user.getEmail();
+         }
+    }
+
+    @Getter
+    public static class DeleteResponse{
+        private Boolean result;
+
+        public DeleteResponse(boolean result){
+            this.result = result;
+        }
+    }
+
 }
