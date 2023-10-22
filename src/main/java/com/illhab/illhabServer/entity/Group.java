@@ -29,8 +29,11 @@ public class Group extends TimeEntity {
 
     private String name;
 
+    private Long leaderId;
+
     @Builder
-    public Group(String name) {
+    public Group(Long leaderId, String name) {
+        this.leaderId = leaderId;
         this.name = name;
     }
 }
