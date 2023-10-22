@@ -30,7 +30,7 @@ public class GroupServiceImpl implements GroupService {
     public List<GroupDto.CommonResponse> getUserGroups(Long userId) {
         Optional<List<UserProject>> project = userProjectRepository.findByUserId(userId);
         List<UserProject> userProjects = project.orElseThrow(
-            () -> new IllegalArgumentException("잘못된 요청입니다."));
+            () -> new IllegalArgumentException("해당 데이터가 존재하지 않습니다."));
 
         return userProjects.stream()
             .map(userProject -> new CommonResponse(userProject.getProject().getGroup()))
