@@ -36,8 +36,7 @@ public class UserProject {
 
 
     @Builder
-    public UserProject(Long id, User user, Project project) {
-        this.id = id;
+    public UserProject(User user, Project project) {
         this.user = user;
         this.project = project;
     }

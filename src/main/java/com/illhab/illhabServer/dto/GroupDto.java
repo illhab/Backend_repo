@@ -24,6 +24,8 @@ public class GroupDto {
         public CommonResponse(Group group) {
             this.id = group.getId();
             this.name = group.getName();
+            this.projects = group.getProjects();
         }
+
     }
 }
