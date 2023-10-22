@@ -33,7 +33,6 @@ public class User extends TimeEntity {
     private String email;
 
     @Column(nullable = false, length = 15)
-    @Setter
     private String name;
 
     @Enumerated(EnumType.STRING)
