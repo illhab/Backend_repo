@@ -127,4 +127,39 @@ public class UserRepositoryTest {
         assertThat(users.size()).isEqualTo(2);
 
     }
+
+    @Test
+    @Transactional
+    @DisplayName("유저 정보 변경 성공 테스트 케이스")
+    public void 유저_정보_변경_성공(){
+        //given
+        User user1 = User.builder()
+                .email("test@test.com")
+                .name("TEST")
+                .sns_role("kakao")
+                .build();
+
+        //when
+        user1.changeName("change");
+
+        assertThat(user1.getName()).isEqualTo("change");
+    }
+
+    @Test
+    @Transactional
+    @DisplayName("유저 정보 변경 실패 테스트 케이스")
+    public void 유저_정보_변경_실패(){
+        //given
+        User user1 = User.builder()
+                .email("test@test.com")
+                .name("TEST")
+                .sns_role("kakao")
+                .build();
+
+        //when
+        user1.changeName("change");
+
+        assertThat(user1.getName()).isEqualTo("change22");
+    }
+
 }
