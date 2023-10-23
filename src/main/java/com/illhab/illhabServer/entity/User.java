@@ -41,13 +41,16 @@ public class User extends TimeEntity {
     @Column(nullable = false)
     private SNS_ROLE sns_role;
 
+    @Column(columnDefinition = "integer default 0")
+    private int isDeleted;
+
     @Builder
     public User(String email, String name, String sns_role) {
         this.email = email;
         this.name = name;
 
         //sns_role은 string으로 받고 여기서 변환
-        switch (sns_role){
+        switch (sns_role) {
             case "google":
                 this.sns_role = SNS_ROLE.GOOGLE;
                 break;
@@ -61,6 +64,16 @@ public class User extends TimeEntity {
                 this.sns_role = SNS_ROLE.NONE;
                 break;
         }
+    }
+
+    public void changeName(String name) {
+        //setter 지양을 위해 해당 메서드를 만들었습니다.
+        //이름을 바꾸는 용도로 사용하는 메서드입니다.
+        this.name = name;
+    }
+
+    public void delete() {
+        this.isDeleted = 1;
     }
 }
 
