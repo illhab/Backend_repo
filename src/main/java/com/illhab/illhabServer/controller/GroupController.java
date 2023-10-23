@@ -23,7 +23,7 @@ public class GroupController {
         return ResponseEntity.ok().body(groupService.getUserGroups(userId));
     }
 
-    @PostMapping("/group")
+    @PostMapping("/groups")
     public ResponseEntity<GroupDto.CommonResponse> create(
         @RequestBody GroupDto.CommonRequest request) {
         return ResponseEntity.ok().body(groupService.create(request));
