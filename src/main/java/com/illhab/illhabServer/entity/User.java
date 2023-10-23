@@ -45,25 +45,10 @@ public class User extends TimeEntity {
     private int isDeleted;
 
     @Builder
-    public User(String email, String name, String sns_role) {
+    public User(String email, String name, SNS_ROLE sns_role) {
         this.email = email;
         this.name = name;
-
-        //sns_role은 string으로 받고 여기서 변환
-        switch (sns_role) {
-            case "google":
-                this.sns_role = SNS_ROLE.GOOGLE;
-                break;
-            case "kakao":
-                this.sns_role = SNS_ROLE.KAKAO;
-                break;
-            case "github":
-                this.sns_role = SNS_ROLE.GITHUB;
-                break;
-            default:
-                this.sns_role = SNS_ROLE.NONE;
-                break;
-        }
+        this.sns_role = sns_role;
     }
 
     public void changeName(String name) {

@@ -12,7 +12,7 @@ public class UserDto {
 
         private String name;
         private String email;
-        private String sns_role;
+        private SNS_ROLE sns_role;
     }
 
     @Getter
