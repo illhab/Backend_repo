@@ -40,38 +40,46 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto.UserResponse getUser(String email) {
+    public UserDto.UserResponse getUser(Long userId) {
         //해당 회원 있는지 조회
-        if (!userRepository.existsByEmail(email)) {
+        if (!userRepository.existsById(userId)) {
             throw new IllegalArgumentException(); //보통 Custom Exception 생성후 처리함
         }
 
-        User user = userRepository.findByEmail(email);
-        return new UserDto.UserResponse(user) ;
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("유저가 존재하지 않습니다."));
+        return new UserDto.UserResponse(user);
     }
 
     @Override
-    public UserDto.UpdateResponse update(String email, UserDto.UpdateRequest userDto) {
+    public UserDto.UpdateResponse update(Long userId, UserDto.UpdateRequest userDto) {
         //해당 회원 있는지 조회
-        if (!userRepository.existsByEmail(email)) {
+        if (!userRepository.existsById(userId)) {
             throw new IllegalArgumentException(); //보통 Custom Exception 생성후 처리함
         }
-        User user = userRepository.findByEmail(email);
+
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("유저가 존재하지 않습니다."));
+
         user.changeName(userDto.getName());
-        //이미 존재하는 PK에 대해서 sava를 사용하면 update를 진행합니다.
-        return new UserDto.UpdateResponse(userRepository.save(user)) ;
+
+        //이미 존재하는 PK에 대해서 save를 사용하면 update를 진행합니다.
+        return new UserDto.UpdateResponse(userRepository.save(user));
 
     }
 
     @Override
-    public UserDto.DeleteResponse delete(String email) {
+    public UserDto.DeleteResponse delete(Long userId) {
         //해당 회원 있는지 조회
-        if (!userRepository.existsByEmail(email)) {
+        if (!userRepository.existsById(userId)) {
             //없다면 false반환
-            return new UserDto.DeleteResponse(userRepository.existsByEmail(email));
+            return new UserDto.DeleteResponse(userRepository.existsById(userId));
         }
-        User user = userRepository.findByEmail(email);
-        userRepository.delete(user);
-        return new UserDto.DeleteResponse(!userRepository.existsByEmail(email));
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("유저가 존재하지 않습니다."));
+
+        user.delete();
+
+        return new UserDto.DeleteResponse(true);
     }
 }
