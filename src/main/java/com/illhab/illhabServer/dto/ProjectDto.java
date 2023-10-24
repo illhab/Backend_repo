@@ -1,6 +1,5 @@
 package com.illhab.illhabServer.dto;
 
-import com.illhab.illhabServer.entity.Group;
 import com.illhab.illhabServer.entity.Project;
 import lombok.Getter;
 
@@ -9,7 +8,7 @@ public class ProjectDto {
     @Getter
     public static class CreateRequest {
 
-        private Group group;
+        private Long groupId;
         private String name;
         private Long leader;
     }
@@ -27,5 +26,5 @@ public class ProjectDto {
             this.leader = project.getLeader();
         }
     }
-    
+
 }
