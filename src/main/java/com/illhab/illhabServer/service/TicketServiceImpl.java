@@ -26,8 +26,8 @@ public class TicketServiceImpl implements TicketService {
         Ticket ticket = Ticket.builder().project(project)
             .title(request.getTitle())
             .content(request.getContent())
-            .assigned_userId(
-                request.getAssigned_userId())
+            .author_userId(request.getAuthor_userId())
+            .reporter_userId(request.getReporter_userId())
             .status(request.getStatus())
             .build();
 
