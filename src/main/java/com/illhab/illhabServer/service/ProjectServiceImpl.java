@@ -4,12 +4,10 @@ import static com.illhab.illhabServer.entity.ErrorCode.DUPLICATE_RESOURCE;
 
 import com.illhab.illhabServer.dto.ProjectDto;
 import com.illhab.illhabServer.dto.UserProjectDto;
-import com.illhab.illhabServer.entity.Group;
 import com.illhab.illhabServer.entity.Project;
 import com.illhab.illhabServer.entity.User;
 import com.illhab.illhabServer.entity.UserProject;
 import com.illhab.illhabServer.exception.CustomException;
-import com.illhab.illhabServer.repository.GroupRepository;
 import com.illhab.illhabServer.repository.ProjectRepository;
 import com.illhab.illhabServer.repository.UserProjectRepository;
 import com.illhab.illhabServer.repository.UserRepository;
@@ -24,15 +22,11 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
     private final UserProjectRepository userProjectRepository;
     private final UserRepository userRepository;
-    private final GroupRepository groupRepository;
 
     @Override
     public ProjectDto.CreateResponse create(ProjectDto.CreateRequest request) {
-        Group group = groupRepository.findById(request.getGroupId())
-            .orElseThrow(() -> new IllegalArgumentException("그룹이 존재하지 않습니다."));
-
         Project project = Project.builder()
-            .group(group)
+            .group(request.getGroup())
             .name(request.getName())
             .leader(request.getLeader())
             .build();
