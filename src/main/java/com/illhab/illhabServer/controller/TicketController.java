@@ -37,7 +37,7 @@ public class TicketController {
 
     @PutMapping("/tickets/{ticketId}")
     public ResponseEntity<TicketDto.CommonResponse> updateTicket(
-        @RequestBody TicketDto.UpdateRequest request) {
-        return ResponseEntity.ok().body(ticketService.update(request));
+        @PathVariable Long ticketId, @RequestBody TicketDto.UpdateRequest request) {
+        return ResponseEntity.ok().body(ticketService.update(ticketId, request));
     }
 }

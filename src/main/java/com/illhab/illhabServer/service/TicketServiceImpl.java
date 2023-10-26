@@ -10,6 +10,7 @@ import com.illhab.illhabServer.repository.TicketRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @AllArgsConstructor
 @Service
@@ -41,7 +42,8 @@ public class TicketServiceImpl implements TicketService {
         return tickets.stream().map(CommonResponse::new)
             .toList();
     }
-
+    
+    @Transactional
     @Override
     public CommonResponse delete(Long ticketId) {
         Ticket ticket = ticketRepository.findById(ticketId)
@@ -51,8 +53,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public CommonResponse update(UpdateRequest request) {
-        Ticket ticket = ticketRepository.findById(request.getTicketId())
+    public CommonResponse update(Long ticketId, UpdateRequest request) {
+        Ticket ticket = ticketRepository.findById(ticketId)
             .orElseThrow(() -> new IllegalArgumentException("티켓이 존재하지 않습니다."));
 
         ticket.update(request);

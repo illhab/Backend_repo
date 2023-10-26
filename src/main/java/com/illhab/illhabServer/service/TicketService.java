@@ -13,5 +13,5 @@ public interface TicketService {
 
     CommonResponse delete(Long ticketId);
 
-    CommonResponse update(UpdateRequest request);
+    CommonResponse update(Long ticketId, UpdateRequest request);
 }
